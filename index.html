@@ -616,6 +616,10 @@ textarea.in{height:auto;min-height:120px;padding:10px 12px;font:14px/1.45 ui-mon
 .rm.warn{background:#FFF4E5;border-color:#F3D3A6}
 
 .a-cust{padding:14px 16px}
+.pc-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.pc-top .pc-search{flex:1 1 240px}
+.pc-new{min-height:54px;border-radius:14px;padding:0 20px;font-size:17px;flex:none}
+.lh-r{display:flex;align-items:center;gap:14px}
 .pc-search{position:relative}
 .pc-search .ic{position:absolute;left:14px;top:50%;margin-top:-11px;color:#8A8194;pointer-events:none}
 .pc-search .in{height:54px;padding-left:46px;font-size:18px;border-radius:14px}
@@ -717,6 +721,7 @@ body.pos-on .gsearch{display:none}
   .svc{min-height:80px}
   .pc-sel{flex-wrap:wrap}
   .pc-acts{width:100%}
+  .pc-new{width:100%}
   .pr-row{grid-template-columns:minmax(0,1fr) 92px 70px 36px;gap:6px}
   .pr-add{grid-template-columns:1fr 92px 70px}
   .pr-add .btn{grid-column:1/-1}
@@ -757,7 +762,6 @@ body.pos-on .gsearch{display:none}
     <nav id="nav"></nav>
     <div class="side-bottom">
       <button class="sync-mini" data-act="go" data-k="sync"><i></i><span>Eşitleme kapalı</span></button>
-      <button class="btn primary block" data-act="new-customer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Yeni müşteri</span></button>
       <div class="side-date" id="sideDate"></div>
     </div>
   </aside>
@@ -1795,7 +1799,7 @@ function posResHTML() {
     return `<button class="pc-row" data-act="pos-pick" data-id="${c.id}"><span class="av">${esc(initials(c.name))}</span>` +
       `<span class="pc-t"><b>${esc(c.name)}</b><span>${balanceOf(c.id)} puan${pk && daysLeft(pk.end) >= 0 ? `, pakette ${s.t - s.u} hak` : ''}${c.phone ? ', ' + esc(c.phone) : ''}</span></span></button>`;
   }).join('') +
-    (exact ? '' : `<button class="pc-row add" data-act="pos-newname">${icon('plus')}<span class="pc-t"><b>“${esc(q)}”</b><span>yeni müşteri olarak ekle</span></span></button>`) + `</div>`;
+    (exact ? '' : `<button class="pc-row add" data-act="pos-newcust">${icon('plus')}<span class="pc-t"><b>“${esc(q)}”</b><span>yeni müşteri olarak kaydet</span></span></button>`) + `</div>`;
 }
 function posCustHTML() {
   const c = posCust(), p = ui.pos;
@@ -1810,7 +1814,8 @@ function posCustHTML() {
     return `<div class="pc-sel"><span class="av lg">${esc(initials(p.newName))}</span><div class="pc-t"><b>${esc(p.newName)}</b><span>Kaydedince yeni müşteri olarak eklenecek</span></div>` +
       `<div class="pc-acts"><button class="btn sm" data-act="pos-unpick">Değiştir</button></div></div>`;
   }
-  return `<div class="pc-search">${icon('search')}<input id="posQ" class="in" type="search" placeholder="Müşteri adı ya da telefon" autocomplete="off" value="${esc(p.q)}" aria-label="Müşteri ara"></div><div id="posRes">${posResHTML()}</div>`;
+  return `<div class="pc-top"><div class="pc-search">${icon('search')}<input id="posQ" class="in" type="search" placeholder="Müşteri ara: ad ya da telefon" autocomplete="off" value="${esc(p.q)}" aria-label="Müşteri ara"></div>` +
+    `<button class="btn primary pc-new" data-act="pos-newcust">${icon('plus')}Yeni müşteri</button></div><div id="posRes">${posResHTML()}</div>`;
 }
 function svcTile(name) {
   const key = 's:' + norm(name), on = ui.pos.items.some(i => i.key === key), pr = prOf(name), pt = spOf(name);
@@ -2042,7 +2047,7 @@ function customersView() {
   const n = filteredCustomers().arr.length;
   return `<div class="list-head"><div class="seg wrap">${CFILTERS.map(f =>
     `<button data-act="filter" data-k="${f[0]}" aria-selected="${ui.filter === f[0]}">${f[1]}</button>`).join('')}</div>` +
-    `<span class="muted" id="custCount">${n} müşteri</span></div>` +
+    `<span class="lh-r"><span class="muted" id="custCount">${n} müşteri</span><button class="btn primary sm" data-act="new-customer">${icon('plus')}Yeni müşteri</button></span></div>` +
     `<div class="panel clist"><div class="crow h"><span>Müşteri</span><span>Paket</span><span>Kalan süre</span><span>Puan</span><span>Kutlama</span></div>` +
     `<div id="custRows">${custRows()}</div></div>`;
 }
@@ -2287,15 +2292,16 @@ function renderSheet() {
 
   if (f.type === 'cust') {
     const isNew = !f.id;
-    h = `<h2>${isNew ? 'Yeni müşteri' : 'Müşteri bilgileri'}</h2>` +
+    h = `<h2>${isNew ? 'Yeni müşteri' : 'Müşteri bilgileri'}</h2>` + (isNew ? `<p class="sub">Sadece ad zorunlu. Doğum günü girilirse o gün hatırlatılır.</p>` : '') +
       `<div class="grid2 form-top"><div class="field"><label for="f-name">Ad soyad</label><input id="f-name" class="in" data-c="name" value="${esc(f.name)}" autocomplete="off" autocapitalize="words"></div>` +
       `<div class="field"><label for="f-phone">Telefon <span class="opt">(isteğe bağlı)</span></label><input id="f-phone" class="in num" data-c="phone" type="tel" inputmode="tel" value="${esc(f.phone)}"></div></div>` +
       `<div class="grid2">${mdField('birth', 'Doğum günü', f.birth)}${mdField('wed', 'Evlilik yıl dönümü', f.wed)}</div>` +
       `<div class="field"><label for="f-note">Not <span class="opt">(isteğe bağlı)</span></label><input id="f-note" class="in" data-c="note" value="${esc(f.note)}" placeholder="Ör. boya numarası, hassasiyet"></div>` +
-      (isNew ? `<h3 class="sec-title">Paket <span class="opt">(paketsiz müşteri için boş bırakın)</span></h3>${pkgFields()}` : '') +
+      (isNew ? (f.showPkg ? `<h3 class="sec-title">Yıllık paket</h3>${pkgFields()}`
+        : `<button type="button" class="btn sm" data-act="cust-showpkg" style="margin-top:4px">${icon('box')}Yıllık paket de tanımla</button>`) : '') +
       `<div class="form-err" id="ferr" role="alert"></div>` +
       `<div class="actions">${isNew ? '' : '<button class="btn danger" data-act="cust-del">Müşteriyi sil</button><span class="sp"></span>'}` +
-      `<button class="btn" data-act="sheet-close">Vazgeç</button><button class="btn primary" data-act="cust-save">${isNew ? 'Müşteriyi ekle' : 'Kaydet'}</button></div>`;
+      `<button class="btn" data-act="sheet-close">Vazgeç</button><button class="btn primary" data-act="cust-save">${isNew ? (f.fromPos ? 'Kaydet ve fişe ekle' : 'Müşteriyi kaydet') : 'Kaydet'}</button></div>`;
   } else if (f.type === 'pkg') {
     const c = cust(f.cid);
     const title = f.mode === 'edit' ? 'Paketi düzenle' : f.mode === 'renew' ? 'Yeni dönem başlat' : 'Paket tanımla';
@@ -2677,7 +2683,13 @@ document.addEventListener('click', e => {
     case 'go': if (ui.form && ui.form.type === 'more') closeSheet(); nav(b.dataset.k); break;
     case 'pos-with': posReset(b.dataset.id); nav('home'); break;
     case 'pos-pick': ui.pos.cid = b.dataset.id; ui.pos.newName = ''; ui.pos.q = ''; ui.pos.items = ui.pos.items.filter(i => !i.pkg); ui.pos.pointsTouched = false; posRefresh(); break;
-    case 'pos-newname': ui.pos.newName = ui.pos.q.trim(); ui.pos.cid = null; ui.pos.q = ''; posRefresh(); break;
+    case 'pos-newname':
+    case 'pos-newcust': {
+      const q = ui.pos.q.trim(), isPhone = /^[\d\s+()-]{6,}$/.test(q);
+      openForm({ type: 'cust', id: null, name: isPhone ? '' : q, phone: isPhone ? q : '', note: '', birth: {}, wed: {}, fromPos: true, showPkg: false }, newDraft());
+      setTimeout(() => { const i = $(q && !isPhone ? '#f-phone' : '#f-name'); if (i) i.focus(); }, 60); break;
+    }
+    case 'cust-showpkg': ui.form.showPkg = true; renderSheet(); break;
     case 'pos-unpick': ui.pos.cid = null; ui.pos.newName = ''; ui.pos.items = ui.pos.items.filter(i => !i.pkg); ui.pos.pointsTouched = false; posRefresh(); setTimeout(() => { const q = $('#posQ'); if (q) q.focus(); }, 30); break;
     case 'pos-svc': {
       const n = b.dataset.k, key = 's:' + norm(n), i = ui.pos.items.findIndex(x => x.key === key);
@@ -2755,7 +2767,7 @@ document.addEventListener('click', e => {
     case 'new-customer': {
       if (ui.form && ui.form.type === 'more') closeSheet();
       const nm = ui.q.trim(); ui.dropOpen = false; $('#qdrop').hidden = true;
-      openForm({ type: 'cust', id: null, name: nm, phone: '', note: '', birth: {}, wed: {} }, newDraft());
+      openForm({ type: 'cust', id: null, name: nm, phone: '', note: '', birth: {}, wed: {}, showPkg: false }, newDraft());
       setTimeout(() => { const i = $('#f-name'); if (i) i.focus(); }, 60); break;
     }
     case 'edit-cust': { const c = cust(ui.cid); openForm({ type: 'cust', id: c.id, name: c.name, phone: c.phone || '', note: c.note || '', birth: Object.assign({}, c.birth || {}), wed: Object.assign({}, c.wed || {}) }); break; }
@@ -2861,6 +2873,7 @@ document.addEventListener('click', e => {
       const bd = readMD(f.birth, 'Doğum günü'); if (!bd.ok) { formErr(bd.err); break; }
       const wd = readMD(f.wed, 'Evlilik yıl dönümü'); if (!wd.ok) { formErr(wd.err); break; }
       if (!f.id) {
+        if (!f.showPkg) d.items = [];
         const r = cleanItems(d); if (r.err) { formErr(r.err); break; }
         if (r.items.length) { const de = checkDates(d); if (de) { formErr(de); break; } }
         const dup = db.customers.find(c => norm(c.name) === norm(name));
@@ -2870,7 +2883,13 @@ document.addEventListener('click', e => {
           learnServices(r.items); db.customers.push(c);
           const sold = r.items.length && d.toKasa && +digits(d.price);
           if (sold) newEntry({ type: 'in', cid: c.id, items: [d.title || 'Yıllık paket'], amount: +digits(d.price), points: 0, note: 'Paket satışı' });
-          save(); closeSheet(); nav('cust', c.id); toast(name + ' eklendi.' + (sold ? ` Kasaya ${fmtTL(+digits(d.price))} yazıldı.` : ''));
+          save(); closeSheet();
+          const soldTxt = sold ? ` Kasaya ${fmtTL(+digits(d.price))} yazıldı.` : '';
+          if (f.fromPos) {
+            ui.pos.cid = c.id; ui.pos.newName = ''; ui.pos.q = ''; ui.pos.pointsTouched = false;
+            if (ui.view === 'home') { renderSide(); posRefresh(); } else nav('home');
+            toast(name + ' kaydedildi ve fişe seçildi.' + soldTxt);
+          } else { nav('cust', c.id); toast(name + ' eklendi.' + soldTxt); }
         };
         if (dup) confirmBox('Bu isim zaten kayıtlı', `<b>${esc(dup.name)}</b> adında bir müşteri var. Yine de yeni kayıt açılsın mı?`, 'Yeni kayıt aç', create);
         else create();
