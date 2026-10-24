@@ -1353,6 +1353,122 @@ a.mv-tpl-main:hover{background:#FFF8F2}
   .sheet > .panel.mv-sheet{padding:calc(env(safe-area-inset-top,0px) + 14px) 16px calc(16px + env(safe-area-inset-bottom,0px))}
   .mv-rows .row-label{margin-left:-14px;padding-left:14px}
 }
+/* ===== v9: daha zarif görünüm (krem, altın, espresso) ===== */
+:root{--g1:#D9B07A;--g2:#B8874F;--g3:#9C6A3D;--esp:#3B2416;--esp2:#5A3A24;--cream:#FAF5EF;--card:#FFFDFA;--line9:#F0E2D4;--soft9:#F7EDE3}
+body{background:radial-gradient(1200px 500px at 85% -10%,#F6E6D6 0%,transparent 60%),radial-gradient(900px 500px at -10% 110%,#F4E7DE 0%,transparent 55%),var(--cream)!important}
+#content{background:transparent!important}
+/* sidebar */
+#side{background:linear-gradient(180deg,#2C1B11 0%,#3B2416 55%,#2A1A10 100%)!important;border-right:0!important;box-shadow:6px 0 30px -18px rgba(40,20,8,.55)}
+#side .nv{border-radius:14px!important;color:#EADBC8!important;font-weight:700}
+#side .nv .ic{color:var(--g1)!important}
+#side .nv:hover{background:rgba(217,176,122,.08)!important}
+#side .nv[aria-current="page"]{background:linear-gradient(90deg,rgba(217,176,122,.26),rgba(217,176,122,.06))!important;color:#FFF3E2!important;box-shadow:inset 0 0 0 1px rgba(217,176,122,.25)}
+#side .nv[aria-current="page"]::before{background:linear-gradient(180deg,#F1D3A6,var(--g2))!important}
+/* top bar */
+.topbar{background:rgba(255,251,246,.86)!important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line9)!important}
+#topTitle{font-family:'ASerif',Georgia,serif!important;font-weight:700!important;color:var(--esp)!important}
+.gsearch input{background:#fff!important;border:1px solid #EAD8C6!important;border-radius:999px!important}
+/* cards: one family */
+.panel,.m3-module,.m3-stat-card,.mv-card,.ticket,.m3-client-list,.a-cust,.m3-client-intro,.sum,.kp-tot,.set-card,.lock{
+  background:linear-gradient(180deg,#FFFFFF 0%,var(--card) 100%)!important;border:1px solid var(--line9)!important;border-radius:22px!important;
+  box-shadow:0 1px 0 #fff inset,0 20px 40px -32px rgba(74,44,22,.55)!important}
+.m3-stat-card{transition:transform .15s ease,box-shadow .15s ease}
+.m3-stat-card:hover{transform:translateY(-2px);box-shadow:0 24px 44px -30px rgba(74,44,22,.6)!important}
+.m3-intro{border-radius:24px!important;border:1px solid var(--line9)!important;box-shadow:0 22px 48px -36px rgba(74,44,22,.6)!important}
+/* buttons */
+.btn{border-radius:14px!important}
+.btn.primary,.m3-add-customer,.pc-new{background:linear-gradient(135deg,#C99A64 0%,#9C6A3D 100%)!important;border-color:#A97847!important;color:#fff!important;box-shadow:0 10px 22px -12px rgba(140,90,40,.75)!important}
+.btn.primary:active,.pc-new:active{filter:brightness(.95)}
+.btn:not(.primary):not(.danger):not(.danger-fill):not(.mv-wa-btn):not(.cta){background:#fff;border-color:#E6D3C0;color:var(--esp2)}
+.btn.xl#posSaveBtn{background:linear-gradient(135deg,#4A2E1D 0%,#7A5233 100%)!important;border-color:transparent!important;color:#FFF3E2!important;box-shadow:0 14px 26px -14px rgba(60,35,20,.8)!important}
+.btn.xl#posSaveBtn[disabled]{opacity:.45;box-shadow:none!important}
+/* pills and segmented controls */
+.pc-recent .chip,.chip{border-radius:999px!important;border:1px solid #EAD8C6!important;background:#FFF8F1!important;color:var(--esp2)!important;box-shadow:none!important;padding:7px 14px!important}
+.chip[aria-pressed="true"],.chip.on{background:var(--esp)!important;border-color:var(--esp)!important;color:#FFF3E2!important}
+.seg{background:#F3E7DC!important;border-radius:999px!important;padding:4px!important}
+.seg button{border-radius:999px!important}
+.seg button[aria-selected="true"]{background:#fff!important;color:var(--esp)!important;box-shadow:0 3px 10px -4px rgba(74,44,22,.4)!important}
+/* kasa tiles and receipt */
+.svc{background:#fff!important;border:1px solid var(--line9)!important;border-radius:18px!important;box-shadow:0 12px 24px -22px rgba(74,44,22,.6)!important}
+.svc:hover{border-color:#E2C7A9!important}
+.svc .s-meta b{color:#A0703F!important}
+.svc .s-meta em{background:#FBEBD8!important;color:#8A5A22!important}
+.svc.on{background:linear-gradient(140deg,#4A2E1D 0%,#7A5233 100%)!important;border-color:transparent!important;box-shadow:0 14px 26px -14px rgba(60,35,20,.75)!important}
+.svc.on .s-name,.svc.on .s-meta b{color:#FFF3E2!important}
+.svc.on .s-meta em{background:rgba(255,231,200,.18)!important;color:#FFE1BE!important}
+.svc.on .s-check{background:linear-gradient(135deg,#F1D3A6,#C99A64)!important;color:var(--esp)!important}
+.svc.pk{background:#FFF7EF!important;border-color:#F1D9C4!important}
+.svc.pk.on{background:linear-gradient(140deg,#B5652D,#D08A4E)!important}
+.svc.other{background:transparent!important;border:1.5px dashed #DCC2A8!important;box-shadow:none!important}
+.ticket{border-top:4px solid var(--g1)!important}
+.t-title{font-family:'ASerif',Georgia,serif}
+.in.amt{border-color:#EAD8C6!important;background:#FFFCF8!important}
+.g-title{font-family:'ASerif',Georgia,serif;font-size:19px!important}
+/* customer list */
+.m3-customer-row{border-radius:16px;transition:background .12s ease}
+.m3-customer-row:hover{background:#FFF8F1}
+.m3-avatar{color:#fff!important;font-weight:800;background:linear-gradient(140deg,#E7C59E,#BE8C57)!important;box-shadow:0 6px 14px -8px rgba(120,80,40,.7)}
+.m3-avatar.x1{background:linear-gradient(140deg,#F1C2C7,#C77983)!important}
+.m3-avatar.x2{background:linear-gradient(140deg,#C9DEC9,#7FA584)!important}
+.m3-avatar.x3{background:linear-gradient(140deg,#D9CCEB,#9881BF)!important}
+.m3-avatar.x4{background:linear-gradient(140deg,#F2D6B3,#C99A64)!important}
+.m3-avatar.x5{background:linear-gradient(140deg,#E9C6B6,#B97A62)!important}
+.m3-wa{background:#1FA855!important;color:#fff!important;border-radius:50%!important;box-shadow:0 8px 16px -10px rgba(20,120,60,.8)}
+/* tab bar */
+#tabbar .tb[aria-current="page"]{color:var(--esp)!important}
+#tabbar .tb[aria-current="page"] .ic{color:var(--g2)!important}
+
+/* message sheet */
+.sheet > .panel.mv-sheet2{padding:0!important;overflow:hidden auto;border-radius:24px}
+.mv-sheet-head2{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;padding:16px 18px;background:linear-gradient(135deg,#3B2416 0%,#7A5233 100%);color:#FFF3E2}
+.mv-sheet-head2 .mv-sh-t b{color:#FFF3E2;font-family:'ASerif',Georgia,serif;font-size:20px}
+.mv-sheet-head2 .mv-sh-t span{color:#E9D3BC}
+.mv-ava.sm{width:48px;height:48px;font-size:17px;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
+.mv-ava.xs{width:40px;height:40px;font-size:15px;box-shadow:none}
+.mv-x{width:38px;height:38px;border:0;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:24px;line-height:1}
+.mv-sheet-body{padding:14px 16px 18px}
+.mv-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:10px}
+.mv-chips button{flex:none;display:inline-flex;align-items:center;gap:6px;border:0;border-radius:999px;padding:9px 14px;background:var(--soft9);color:#6B4E3A;font-weight:700;font-size:14.5px}
+.mv-chips button span{min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:#fff;color:#8A6A52;font-size:12.5px;display:inline-grid;place-items:center}
+.mv-chips button[aria-selected="true"]{background:var(--esp);color:#FFF3E2}
+.mv-chips button[aria-selected="true"] span{background:var(--g1);color:var(--esp)}
+.mv-tcards{display:grid;gap:10px}
+.mv-tcard{background:#FFFDFB;border:1px solid var(--line9);border-radius:18px;padding:14px;box-shadow:0 12px 24px -24px rgba(74,44,22,.6)}
+.mv-tcard.sent{background:#F7FBF8;border-color:#D7EEDF}
+.mv-tcard-top{display:flex;align-items:center;gap:12px}
+.mv-tcard-t{flex:1;display:flex;flex-direction:column;min-width:0}
+.mv-tcard-t b{font-size:16.5px;color:var(--esp)}
+.mv-tcard-t small{font-size:12.5px;color:#9A8576;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.mv-tdel{width:34px;height:34px;border:0;border-radius:10px;background:none;color:#B49C8A;font-size:22px}
+.mv-tcard-text{margin:10px 0 8px;font-size:15px;line-height:1.5;color:#5A4638;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.mv-tcard-acts{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mv-ghost{display:inline-flex;align-items:center;gap:6px;border:0;background:none;color:#8A6A52;font-weight:700;font-size:14.5px;padding:8px 4px}
+.mv-ghost .ic{width:17px;height:17px}
+.mv-cic{width:42px;height:42px;flex:none;border-radius:14px;display:grid;place-items:center}
+.mv-cic .ic{width:21px;height:21px}
+.mv-emo{font-size:20px;line-height:1}
+.mv-emo.big{font-size:30px}
+.c-cel{background:#FDE7EF;color:#C2306A}.c-thanks{background:#E3F6EA;color:#1F7A45}.c-pkg{background:#FFF1DA;color:#B7791F}
+.c-gift{background:#F1E8FD;color:#7B4BC4}.c-pts{background:#FFF4DC;color:#A5781F}.c-appt{background:#E6EFFD;color:#2F6FD6}
+.c-miss{background:#FDEBE3;color:#C25B32}.c-warm{background:#FBEBDD;color:#A0673A}.c-hol{background:#FDE6E3;color:#C0392B}
+.c-mine{background:#E0F4F2;color:#1E7F77}.c-free{background:#F1ECE8;color:#7A6355}
+.mv-write{display:flex;align-items:center;gap:12px;width:100%;margin-top:12px;padding:14px;border:1.5px dashed #DCC2A8;border-radius:18px;background:transparent;text-align:left;color:var(--esp)}
+.mv-write .ic{width:22px;height:22px;color:var(--g2)}
+.mv-write span{display:flex;flex-direction:column}
+.mv-write small{color:#9A8576}
+.mv-save-tpl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.mv-empty-note{display:flex;flex-direction:column;gap:4px;padding:18px;border-radius:18px;background:var(--soft9);color:#6B4E3A}
+.mv-nophone{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:8px 2px}
+.mv-holiday{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:22px;background:linear-gradient(135deg,#FDECEA 0%,#FFF6EE 100%);border:1px solid #F3D5CF}
+.mv-holiday b{font-family:'ASerif',Georgia,serif;font-size:19px;color:#7A2A20}
+.mv-holiday small{display:block;color:#8A6458;font-size:14px;margin-top:2px}
+.mv-hero{background:radial-gradient(500px 220px at 100% 0%,rgba(217,176,122,.28),transparent 70%),linear-gradient(135deg,#FFFAF5 0%,#F6E5DA 100%)!important}
+@media (max-width:760px){
+  body:not([data-view="customers"]) .gsearch{display:none!important}
+  .sheet > .panel.mv-sheet2{border-radius:0}
+  .mv-sheet-head2{padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 14px}
+  .mv-tcard-acts .mv-send{padding:10px 14px}
+}
 </style>
 </head>
 <body>
@@ -3422,7 +3538,7 @@ function waNumber(p) {
 function waLink(x) {
   const n = waNumber(x.c.phone);
   if (!n) return '';
-  const first = x.c.name.trim().split(/\s+/)[0];
+  const first = crmFirst(x.c.name);
   const msg = x.kind === 'birth'
     ? `Sevgili ${first}, doğum gününüzü en içten dileklerimizle kutlarız. Nice mutlu yıllara! Maviay Kuaför`
     : `Sevgili ${first}, evlilik yıl dönümünüz kutlu olsun. Nice mutlu yıllara! Maviay Kuaför`;
@@ -3822,7 +3938,7 @@ function posView() {
   const t = today();
   const list = db.entries.filter(e => e.date === t && e.type !== 'out').sort((a, b) => ((a.at || '') < (b.at || '') ? 1 : -1));
   const sum = kasaOpen() ? `<span class="t-sum num">${fmtTL(totals(t, addDays(t, 1)).in)}</span>` : '';
-  return installHint() + `<div class="crm-quick"><button class="btn sm primary" data-act="go" data-k="messages">${icon('msg')} Bugünkü WhatsApp önerileri (${crmMsgSuggestions().filter(x=>!x.done).length})</button><button class="btn sm" data-act="go" data-k="crm">${icon('users')} Randevu ve işletme merkezi</button></div>` + `<div class="pos">` +
+  return installHint() + `<div class="crm-quick"><button class="btn sm primary" data-act="go" data-k="messages">${icon('msg')} Bugün gönderilecek mesajlar (${mvDueToday().filter(x=>!x.done).length})</button><button class="btn sm" data-act="go" data-k="crm">${icon('users')} Randevu ve işletme merkezi</button></div>` + `<div class="pos">` +
     `<div class="a-rem">${remindHTML()}</div>` +
     `<section class="panel a-cust"><div id="posCust">${posCustHTML()}</div></section>` +
     `<section class="a-svcs" id="posTiles">${posTilesHTML()}</section>` +
@@ -3854,7 +3970,7 @@ function posSave() {
     db.entries = db.entries.filter(x => x.id !== e.id);
     uses.forEach(x => { const it = findItem(cid, x.pid, x.itemId); if (it) it.uses = it.uses.filter(y => y.id !== x.u.id); });
     save(); render(); toast('Kayıt geri alındı.');
-  }, c && crmPhone(c.phone) ? { label: 'Mesaj at', fn: () => mvWASheet(cid) } : null);
+  }, c && crmPhone(c.phone) ? { label: 'Mesaj at', fn: () => mvSheet2(cid) } : null);
   setTimeout(() => { const q = $('#posQ'); if (q && !isTouch()) q.focus(); }, 60);
 }
 
@@ -4111,7 +4227,7 @@ function premiumHomeView(){
   const greet=hour<11?'Günaydın':hour<17?'Merhaba':'İyi akşamlar';
   const shortDate=now.toLocaleDateString('tr-TR',{day:'numeric',month:'long',weekday:'long'});
   const planned=(db.crm.appointments||[]).filter(a=>a.status==='planned'&&a.when&&a.when.slice(0,10)===todayKey).sort((a,b)=>a.when.localeCompare(b.when));
-  const suggestions=crmMsgSuggestions().filter(x=>!x.done);
+  const suggestions=mvDueToday().filter(x=>!x.done);
   const activeCustomers=db.customers.filter(c=>!!active(c)).length;
   const monthKey=todayKey.slice(0,7);
   const monthIncome=db.entries.filter(e=>e.type==='in'&&e.date?.slice(0,7)===monthKey).reduce((n,e)=>n+(Number(e.amount)||0),0);
@@ -4165,7 +4281,7 @@ function renderMain() {
   if (ui.view === 'cust' && cust(ui.cid)) h = `<div class="view v-cust mv-cd">${mvCustomerView(cust(ui.cid))}</div>`;
   else {
     if (ui.view === 'cust') ui.view = 'customers';
-    const f = { more: m3MoreView, home: premiumHomeView, pos: posView, customers: customersView, earn: kasaView, gift: giftView, settings: settingsView, prices: pricesView, tpl: tplView, backup: backupView, sync: syncView, crm: crmView, messages: mvMessagesView }[ui.view] || posView;
+    const f = { more: m3MoreView, home: premiumHomeView, pos: posView, customers: customersView, earn: kasaView, gift: giftView, settings: settingsView, prices: pricesView, tpl: tplView, backup: backupView, sync: syncView, crm: crmView, messages: mvMessagesView2 }[ui.view] || posView;
     const openForStaff = (ui.view === 'crm' && (ui.crmTab || 'appointments') === 'appointments') || (ui.view === 'messages');
     h = `<div class="view v-${ui.view}">${PROTECTED.includes(ui.view) && !openForStaff && !kasaOpen() ? lockView() : f()}</div>`;
   }
@@ -5057,7 +5173,7 @@ const crmDateTimeInput = d => {
   const p = n => String(n).padStart(2,'0');
   return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
 };
-const crmFirst = n => String(n || '').trim().split(/\s+/)[0] || 'Değerli müşterimiz';
+const crmFirst = n => { const f = String(n || '').trim().split(/\s+/)[0]; if (!f) return 'Değerli müşterimiz'; return /han[ıi]m/i.test(String(n)) ? f : f + ' Hanım'; };
 const crmPhone = p => {
   let x = digits(p);
   if (/^0\d{10}$/.test(x)) x = '9' + x;
@@ -5121,7 +5237,15 @@ const M4_PRESETS=[
  ['warm','Nazik davet','☕','Merhaba {ad} 🌷\n\nMaviay Kuaför’den selamlar! Sizi yeniden görmekten memnun oluruz. Bir randevu planlamak isterseniz bize yazabilirsiniz.\n\nSevgiler, Maviay Kuaför ✨\n\nBu tür mesajları almak istemiyorsanız bize bildirebilirsiniz.'],
  ['package','Paket hatırlatma','🎀','Merhaba {ad}, {paket} paketiniz için kayıtlarımızda görünen bitiş tarihi {bitis}. Kalan kullanım hakkınız: {kalan_hak}. Ayrıntıları öğrenmek isterseniz bize yazabilirsiniz.\n\nMaviay Kuaför'],
  ['points','Puan hatırlatma','🎁','Merhaba {ad} 🌸\n\nMaviay Kuaför puan durumunuz: {puan}. Puanlarla alınabilecek hediyeleri öğrenmek isterseniz bize yazabilirsiniz.\n\nMaviay Kuaför\n\nBu tür mesajları almak istemiyorsanız bize bildirebilirsiniz.'],
- ['special','Özel duyuru','✦',M4_DEFAULT_TEXT]
+ ['special','Özel duyuru','✦',M4_DEFAULT_TEXT],
+ ['coffee','Kahveye bekliyoruz','☕','Merhaba {ad} ☕ Uzun zamandır bir kahvemizi içmediniz! Yolunuz düşerse kahveniz bizden, sohbet sizden. Sizi görmek bize her zaman mutluluk veriyor 🌸\n\nMaviay Kuaför'],
+ ['missyou','Sizi özledik','🌸','Merhaba {ad} 🌸 Salonumuzda sizin güzel enerjinizi özledik! Kendinize ayıracağınız küçük bir mola için sizi bekliyoruz. Kahveniz ve güler yüzümüz hazır ☕\n\nMaviay Kuaför'],
+ ['bayram','Bayram tebriği','🎊','Merhaba {ad} 🎊 Bayramınız kutlu olsun! Sevdiklerinizle birlikte sağlıklı, huzurlu ve mutlu bir bayram geçirmenizi dileriz.\n\nMaviay Kuaför'],
+ ['ramazan','Ramazan Bayramı','🌙','Merhaba {ad} 🌙 Ramazan Bayramınızı en içten dileklerimizle kutlarız. Sevdiklerinizle birlikte sağlık, huzur ve mutluluk dolu bir bayram geçirmenizi dileriz.\n\nMaviay Kuaför'],
+ ['kurban','Kurban Bayramı','🌙','Merhaba {ad} 🌙 Kurban Bayramınız mübarek olsun. Sevdiklerinizle huzur ve bereket dolu, güzel bir bayram geçirmenizi dileriz.\n\nMaviay Kuaför'],
+ ['newyear','Yeni yıl','🎉','Merhaba {ad} 🎉 Yeni yılınız kutlu olsun! Yeni yılın size sağlık, mutluluk ve bolca güzellik getirmesini dileriz ✨\n\nMaviay Kuaför'],
+ ['women','8 Mart','🌷','Merhaba {ad} 🌷 Dünya Kadınlar Günü’nüz kutlu olsun! Siz her gün en güzelini hak ediyorsunuz 💐\n\nMaviay Kuaför'],
+ ['republic','Cumhuriyet Bayramı','🇹🇷','Merhaba {ad} 🇹🇷 Cumhuriyet Bayramımız kutlu olsun! Nice mutlu ve güzel yıllara.\n\nMaviay Kuaför']
 ];
 function m4Load(){
  if(ui.m4Ready)return;
@@ -5844,16 +5968,17 @@ document.addEventListener('click', e => {
   if (e.target.id === 'sheet' && ui.form && ui.form.type === 'mvwa') { closeSheet(); return; }
   const b = e.target.closest('[data-act^="mv-"]'); if (!b) return;
   const act = b.dataset.act;
+  if (!['mv-sent', 'mv-wa', 'mv-edit', 'mv-back', 'mv-close', 'mv-addphone', 'mv-tab', 'mv-msgtab'].includes(act)) return; // handled by the message library listener
   if (act === 'mv-sent') {
     // the link itself opens WhatsApp; just remember it was sent today
     mvMarkSent(b.dataset.full);
-    setTimeout(() => { if (ui.form && ui.form.type === 'mvwa') mvWASheet(ui.form.cid); renderMain(); }, 400);
+    setTimeout(() => { if (ui.form && ui.form.type === 'mvwa') mvSheet2(ui.form.cid, { grp: (ui.mvwa || {}).grp }); renderMain(); }, 400);
     toast('WhatsApp açıldı. Mesajı kontrol edip gönder’e basın.');
     return;
   }
   e.preventDefault(); e.stopImmediatePropagation();
-  if (act === 'mv-wa') mvWASheet(b.dataset.id);
-  else if (act === 'mv-edit') mvWASheet(b.dataset.id, b.dataset.k);
+  if (act === 'mv-wa') mvSheet2(b.dataset.id);
+  else if (act === 'mv-edit') mvSheet2(b.dataset.id, { key: b.dataset.k });
   else if (act === 'mv-back') mvWASheet(b.dataset.id);
   else if (act === 'mv-close') closeSheet();
   else if (act === 'mv-addphone') { closeSheet(); const c = cust(b.dataset.id); if (c) { nav('cust', c.id); openForm({ type: 'cust', id: c.id, name: c.name, phone: c.phone || '', note: c.note || '', birth: Object.assign({}, c.birth || {}), wed: Object.assign({}, c.wed || {}) }); setTimeout(() => { const i = $('#f-phone'); if (i) i.focus(); }, 60); } }
@@ -5866,6 +5991,190 @@ document.addEventListener('input', e => {
   const a = $('#mvSendLink'), c = cust(ui.mvwa.cid);
   if (a && c) a.href = crmWA(c.phone, ui.mvwa.text);
 });
+
+
+/* ================= v9: mesaj kütüphanesi (sıcak mesajlar, bayramlar, kendi şablonlarım) ================= */
+const MV_CATS = {
+  cel: 'Kutlama', thanks: 'Teşekkür', pkg: 'Paket', gift: 'Hediye', pts: 'Puan', appt: 'Randevu', miss: 'Özlem',
+  warm: 'Sıcak mesaj', hol: 'Özel gün', mine: 'Şablonum', free: 'Serbest'
+};
+const MV_TPL_CAT = { birth: 'cel', wed: 'cel', thanks: 'thanks', expiring: 'pkg', rights: 'pkg', renew: 'pkg', gift: 'gift', points: 'pts', appt: 'appt', miss: 'miss', free: 'free' };
+function mvSeason() {
+  const m = new Date().getMonth() + 1;
+  if (m === 12 || m <= 2) return { ad: 'kış', e: '❄️', tip: 'Soğuk havada saçlarınız nem kaybediyor; bir nem bakımı çok iyi gelir.' };
+  if (m <= 5) return { ad: 'ilkbahar', e: '🌸', tip: 'Yeni mevsime ferah bir kesim ya da aydınlık bir renkle girmeye ne dersiniz?' };
+  if (m <= 8) return { ad: 'yaz', e: '☀️', tip: 'Güneş ve deniz saçları yorar; yaz bakımıyla parlaklığını geri kazandıralım.' };
+  return { ad: 'sonbahar', e: '🍂', tip: 'Mevsim değişirken saçlarınız da biraz ilgi istiyor; sıcak tonlar bu mevsime çok yakışıyor.' };
+}
+function mvWarm() {
+  const s = mvSeason();
+  return [
+    ['coffee', '☕', 'Kahveye bekliyoruz', 'Merhaba {ad} ☕ Uzun zamandır bir kahvemizi içmediniz! Yolunuz düşerse kahveniz bizden, sohbet sizden. Sizi görmek bize her zaman mutluluk veriyor 🌸'],
+    ['missyou', '🌸', 'Sizi özledik', 'Merhaba {ad} 🌸 Salonumuzda sizin güzel enerjinizi özledik! Kendinize ayıracağınız küçük bir mola için sizi bekliyoruz. Kahveniz ve güler yüzümüz hazır ☕'],
+    ['week', '✨', 'Güzel bir hafta dileği', 'Günaydın {ad} ✨ Yeni haftanız güzelliklerle dolsun! Kendinizi şımartmak isterseniz kapımız da kahvemiz de her zaman açık 💛'],
+    ['weekend', '💫', 'Hafta sonu hazırlığı', 'Merhaba {ad} 💫 Hafta sonu planlarınız için saçınız hazır mı? Cumartesileri yoğun oluyoruz; şimdiden size güzel bir saat ayıralım mı?'],
+    ['season', s.e, `${s.ad[0].toLocaleUpperCase('tr-TR') + s.ad.slice(1)} bakımı`, `Merhaba {ad} ${s.e} ${s.tip} Sizin için uygun bir gün ayarlayalım, kahveler bizden ☕`],
+    ['newlook', '🎀', 'Yeni bir görünüm', 'Merhaba {ad} 🎀 Bir değişiklik yapmanın tam zamanı olabilir! Aklınızda yeni bir renk ya da kesim varsa gelin birlikte karar verelim. Kahveler bizden ☕'],
+    ['friend', '👭', 'Arkadaşınızla gelin', 'Merhaba {ad} 👭 Güzellik paylaştıkça çoğalır! Bir sonraki randevunuza bir arkadaşınızı da getirin, ikinizi de kahvemiz ve güler yüzümüzle ağırlayalım 💝'],
+    ['thankyou', '💐', 'Teşekkür ederiz', 'Merhaba {ad} 💐 Bizi tercih ettiğiniz için çok teşekkür ederiz. Sizi ağırlamak bizim için her zaman bir keyif. Maviay Kuaför ailesi olarak sevgilerimizle 🌷'],
+    ['goodnight', '🌙', 'İyi akşamlar dileği', 'İyi akşamlar {ad} 🌙 Bugün sizi ağırlamak çok güzeldi. Saçlarınızın keyfini çıkarın, yarın sabah aynaya gülümseyerek bakın 😊']
+  ];
+}
+function mvHolidays() {
+  const now = new Date(), y = now.getFullYear();
+  const mothers = yy => { const d = new Date(yy, 4, 1); const first = (7 - d.getDay()) % 7; return new Date(yy, 4, 1 + first + 7); };
+  const fixed = [
+    ['newyear', '🎉', 'Yeni yıl', m => new Date(m, 0, 1), yy => `Merhaba {ad} 🎉 Yeni yılınız kutlu olsun! ${yy} yılının size sağlık, mutluluk ve bolca güzellik getirmesini dileriz. Yeni yılda da sizi ağırlamayı dört gözle bekliyoruz ✨`],
+    ['valentine', '❤️', 'Sevgililer Günü', m => new Date(m, 1, 14), () => 'Merhaba {ad} ❤️ Sevgililer Günü’nüz kutlu olsun! Özel gününüz için saçınız bizden, gülümsemeniz sizden 💄'],
+    ['women', '🌷', '8 Mart Dünya Kadınlar Günü', m => new Date(m, 2, 8), () => 'Merhaba {ad} 🌷 Dünya Kadınlar Günü’nüz kutlu olsun! Güçlü, güzel ve ilham veren tüm kadınlar gibi siz de her gün en güzelini hak ediyorsunuz 💐'],
+    ['mother', '💐', 'Anneler Günü', mothers, () => 'Merhaba {ad} 💐 Anneler Günü’nüz kutlu olsun! Sevginizle etrafınızı güzelleştirdiğiniz için teşekkürler. Kendinize ayıracağınız bir mola için sizi bekliyoruz 🌸'],
+    ['republic', '🇹🇷', 'Cumhuriyet Bayramı', m => new Date(m, 9, 29), yy => `Merhaba {ad} 🇹🇷 Cumhuriyetimizin ${yy - 1923}. yılı kutlu olsun! Nice mutlu ve güzel yıllara.`]
+  ].map(([key, e, title, dateOf, text]) => {
+    let d = dateOf(y);
+    const t0 = parseYmd(today());
+    if (d < t0) d = dateOf(y + 1);
+    const days = Math.round((d - t0) / 864e5);
+    return { key, e, title, days, date: d, text: text(d.getFullYear()) };
+  });
+  const lunar = [
+    { key: 'ramazan', e: '🌙', title: 'Ramazan Bayramı', text: 'Merhaba {ad} 🌙 Ramazan Bayramınızı en içten dileklerimizle kutlarız. Sevdiklerinizle birlikte sağlık, huzur ve mutluluk dolu bir bayram geçirmenizi dileriz.' },
+    { key: 'kurban', e: '🌙', title: 'Kurban Bayramı', text: 'Merhaba {ad} 🌙 Kurban Bayramınız mübarek olsun. Sevdiklerinizle huzur ve bereket dolu, güzel bir bayram geçirmenizi dileriz.' },
+    { key: 'bayram', e: '🎊', title: 'Bayram tebriği (genel)', text: 'Merhaba {ad} 🎊 Bayramınız kutlu olsun! Sevdiklerinizle birlikte sağlıklı, huzurlu ve mutlu bir bayram geçirmenizi dileriz. Bayram öncesi hazırlığınız için sizi bekliyoruz 🌸' }
+  ];
+  return fixed.sort((a, b) => a.days - b.days).concat(lunar);
+}
+const mvFill = (text, c) => String(text).replace(/\{ad\}/g, crmFirst(c.name)).replace(/\{isim\}/g, c.name) + MV_SIG;
+function mvMine() { db.crm.msgTemplates = Array.isArray(db.crm.msgTemplates) ? db.crm.msgTemplates : []; return db.crm.msgTemplates; }
+/* all messages for the sheet, grouped */
+function mvLibrary(c) {
+  const status = mvTemplates(c).filter(t => t.key !== 'free').map(t => Object.assign(t, { cat: MV_TPL_CAT[t.key] || 'warm' }));
+  const near = mvHolidays().find(h => h.days != null && h.days <= 7);
+  if (near) status.unshift({ key: 'h-' + near.key, ic: null, emoji: near.e, cat: 'hol', title: near.days === 0 ? `Bugün ${near.title}` : `${near.title} (${near.days} gün sonra)`, text: mvFill(near.text, c) });
+  const warm = mvWarm().map(([key, e, title, text]) => ({ key: 'w-' + key, emoji: e, cat: 'warm', title, text: mvFill(text, c) }));
+  const hol = mvHolidays().map(h => ({ key: 'h-' + h.key, emoji: h.e, cat: 'hol', title: h.title + (h.days != null ? (h.days === 0 ? ', bugün' : `, ${fmtD(ymd(h.date))}`) : ''), text: mvFill(h.text, c) }));
+  const mine = mvMine().map(m => ({ key: 'm-' + m.id, emoji: '⭐', cat: 'mine', title: m.title, text: mvFill(m.text, c), mineId: m.id }));
+  return { status, warm, hol, mine };
+}
+const MV_GROUPS = [['status', 'Bu müşteri için'], ['warm', 'Sıcak mesajlar'], ['hol', 'Bayram ve özel gün'], ['mine', 'Şablonlarım']];
+function mvCard(c, t) {
+  const wa = crmWA(c.phone, t.text), sent = mvWasSent(c.id, t.key);
+  const ic = t.emoji ? `<span class="mv-emo">${t.emoji}</span>` : icon(t.ic || 'msg');
+  const warn = t.promo && !c.marketingConsent ? `<em class="mv-warn">Tanıtım mesajı izni işaretli değil</em>` : '';
+  return `<div class="mv-tcard${sent ? ' sent' : ''}"><div class="mv-tcard-top"><span class="mv-cic c-${t.cat}">${ic}</span>` +
+    `<span class="mv-tcard-t"><b>${esc(t.title)}</b><small>${MV_CATS[t.cat] || ''}</small></span>` +
+    (t.mineId ? `<button class="mv-tdel" data-act="mv-mine-del" data-k="${esc(t.mineId)}" aria-label="Şablonu sil">×</button>` : '') + `</div>` +
+    `<p class="mv-tcard-text">${esc(t.text.replace(MV_SIG, ''))}</p>${warn}` +
+    `<div class="mv-tcard-acts"><button class="mv-ghost" data-act="mv-edit2" data-id="${c.id}" data-k="${esc(t.key)}">${icon('edit')}Düzenle</button>` +
+    (wa ? `<a class="mv-send" href="${esc(wa)}" target="_blank" rel="noopener" data-act="mv-sent" data-full="${esc(mvSentKey(c.id, t.key))}">${sent ? icon('check') + 'Gönderildi' : icon('wa') + 'WhatsApp’ta gönder'}</a>` : '') +
+    `</div></div>`;
+}
+function mvFindTpl(c, key) {
+  const lib = mvLibrary(c);
+  return [].concat(lib.status, lib.warm, lib.hol, lib.mine).find(t => t.key === key);
+}
+function mvSheet2(cid, opts) {
+  const c = cust(cid); if (!c) return;
+  opts = opts || {};
+  const prev = ui.mvwa && ui.mvwa.cid === cid ? ui.mvwa : {};
+  ui.mvwa = { cid, grp: opts.grp || prev.grp || 'status', key: opts.key || null, text: opts.text || '' };
+  const phone = crmPhone(c.phone), lib = mvLibrary(c);
+  let body;
+  if (!phone) {
+    body = `<div class="mv-nophone"><span class="mv-cic c-free">${icon('phone')}</span><p>Mesaj gönderebilmek için bu müşterinin telefon numarasını ekleyin.</p><button class="btn primary" data-act="mv-addphone" data-id="${c.id}">Telefon ekle</button></div>`;
+  } else if (ui.mvwa.key) {
+    const t = ui.mvwa.text || (ui.mvwa.key === 'free' ? `Merhaba ${crmFirst(c.name)}, ` : ((mvFindTpl(c, ui.mvwa.key) || {}).text || ''));
+    ui.mvwa.text = t;
+    body = `<div class="mv-editor"><label for="mvText">Mesajınız</label><textarea id="mvText" class="in" rows="7">${esc(t)}</textarea>` +
+      `<div class="mv-save-tpl"><input id="mvTplName" class="in" placeholder="Şablon adı, ör. Yaz kampanyası" autocomplete="off"><button class="btn" data-act="mv-mine-save">${icon('star')}Şablon olarak kaydet</button></div>` +
+      `<div class="mv-editor-acts"><button class="btn" data-act="mv-back2" data-id="${c.id}">Geri</button>` +
+      `<a class="btn mv-wa-btn" id="mvSendLink" href="${esc(crmWA(c.phone, t))}" target="_blank" rel="noopener" data-act="mv-sent" data-full="${esc(mvSentKey(c.id, ui.mvwa.key))}">${icon('wa')}WhatsApp’ta gönder</a></div></div>`;
+  } else {
+    const g = ui.mvwa.grp, list = lib[g] || [];
+    body = `<div class="mv-chips" role="tablist">${MV_GROUPS.map(([k, n]) => `<button role="tab" data-act="mv-grp" data-id="${c.id}" data-k="${k}" aria-selected="${g === k}">${n}<span>${(lib[k] || []).length}</span></button>`).join('')}</div>` +
+      `<div class="mv-tcards">${list.length ? list.map(t => mvCard(c, t)).join('') :
+        (g === 'mine' ? `<div class="mv-empty-note"><b>Henüz kayıtlı şablonunuz yok.</b><span>Bir mesajı düzenlerken “Şablon olarak kaydet” derseniz burada görünür ve bütün müşterilerde kullanılır.</span></div>`
+          : `<div class="mv-empty-note"><b>Bu müşteri için özel bir durum yok.</b><span>Sıcak mesajlardan ya da bayram mesajlarından birini seçebilirsiniz.</span></div>`)}</div>` +
+      `<button class="mv-write" data-act="mv-edit2" data-id="${c.id}" data-k="free">${icon('edit')}<span><b>Kendi mesajını yaz</b><small>Boş bir mesajla başlayın</small></span></button>`;
+  }
+  const html = `<div class="mv-sheet-head2"><span class="mv-ava sm">${esc(initials(c.name))}</span><div class="mv-sh-t"><b>${esc(c.name)}</b><span>${c.phone ? esc(c.phone) : 'Telefon numarası yok'}</span></div>` +
+    `<button class="mv-x" data-act="mv-close" aria-label="Kapat">×</button></div><div class="mv-sheet-body">${body}</div>`;
+  const s = $('#sheet');
+  s.innerHTML = `<div class="panel mv-sheet mv-sheet2" role="dialog" aria-modal="true" aria-label="WhatsApp mesajı">${html}</div>`;
+  s.hidden = false; ui.form = { type: 'mvwa', cid };
+  if (ui.mvwa.key) setTimeout(() => { const ta = $('#mvText'); if (ta) { ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); } }, 60);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act="mv-grp"],[data-act="mv-edit2"],[data-act="mv-back2"],[data-act="mv-mine-save"],[data-act="mv-mine-del"]'); if (!b) return;
+  e.preventDefault(); e.stopImmediatePropagation();
+  const act = b.dataset.act, st = ui.mvwa || {};
+  if (act === 'mv-grp') mvSheet2(b.dataset.id, { grp: b.dataset.k });
+  else if (act === 'mv-edit2') mvSheet2(b.dataset.id, { key: b.dataset.k });
+  else if (act === 'mv-back2') mvSheet2(b.dataset.id, { grp: st.grp });
+  else if (act === 'mv-mine-save') {
+    const c = cust(st.cid), title = ($('#mvTplName').value || '').trim(), raw = ($('#mvText').value || '').trim();
+    if (!title) { toast('Şablona bir ad verin.'); $('#mvTplName').focus(); return; }
+    if (!raw) { toast('Önce mesajı yazın.'); return; }
+    // the customer's own name becomes {ad}, so the template works for everyone
+    const plain = c ? String(c.name).trim().split(/\s+/)[0] : '';
+    let text = raw.replace(MV_SIG.trim(), '').trim();
+    if (plain) text = text.split(plain + ' Hanım').join('{ad}').split(plain).join('{ad}');
+    mvMine().push({ id: uid(), title, text });
+    crmTouch(); toast('Şablon kaydedildi. Bütün müşterilerde “Şablonlarım” altında.');
+    mvSheet2(st.cid, { grp: 'mine' });
+  } else if (act === 'mv-mine-del') {
+    const id = b.dataset.k, m = mvMine().find(x => x.id === id); if (!m) return;
+    confirmBox('Şablon silinsin mi?', `<b>${esc(m.title)}</b> şablonu bütün müşterilerden kalkar.`, 'Sil', () => {
+      db.crm.msgTemplates = mvMine().filter(x => x.id !== id); crmTouch(); mvSheet2(st.cid, { grp: 'mine' });
+    }, true);
+  }
+}, true);
+
+/* messages screen: built from the same library, so everything due today shows up */
+function mvMessagesView2() {
+  const tab = ui.msgTab || 'today';
+  const tabs = `<nav class="mv-tabs" role="tablist"><button role="tab" data-act="mv-msgtab" data-k="today" aria-selected="${tab === 'today'}">Bugün gönderilecekler</button>` +
+    `<button role="tab" data-act="mv-msgtab" data-k="bulk" aria-selected="${tab === 'bulk'}">${icon('lock', 'tail')}Toplu mesaj</button></nav>`;
+  if (tab === 'bulk') return tabs + (kasaOpen() ? crmMsgView() : lockView());
+  const groups = [['cel', 'Doğum günü ve yıl dönümü', '🎂'], ['appt', 'Yaklaşan randevular', '📅'], ['pkg', 'Paketi bitmek üzere ya da biten', '🎀'],
+    ['gift', 'Hediye hakkı kazananlar', '🎁'], ['thanks', 'Bugün gelenlere teşekkür', '💐'], ['miss', 'Uzun süredir gelmeyenler', '☕']];
+  const pick = { cel: ['birth', 'wed'], appt: ['appt'], pkg: ['expiring', 'renew'], gift: ['gift'], thanks: ['thanks'], miss: ['miss'] };
+  const rows = {};
+  db.customers.filter(c => crmPhone(c.phone)).forEach(c => {
+    mvTemplates(c).forEach(t => {
+      const g = Object.keys(pick).find(k => pick[k].includes(t.key));
+      if (!g) return;
+      (rows[g] = rows[g] || []).push({ c, t });
+    });
+  });
+  const near = mvHolidays().find(h => h.days != null && h.days <= 10);
+  let h = tabs;
+  if (near) h += `<div class="mv-holiday"><span class="mv-emo big">${near.e}</span><div><b>${near.days === 0 ? 'Bugün ' + near.title : near.title + ' ' + near.days + ' gün sonra'}</b>` +
+    `<small>Müşterilerinize tebrik göndermek için kartlarındaki “Mesaj gönder” → “Bayram ve özel gün” bölümünü ya da Toplu mesaj sekmesini kullanabilirsiniz.</small></div></div>`;
+  const total = Object.values(rows).reduce((s, a) => s + a.length, 0);
+  if (!total) return h + `<div class="mv-card mv-empty"><span class="mv-cic c-thanks">${icon('wa')}</span><div><b>Bugün için hazır bekleyen mesaj yok</b><small>Doğum günü, randevu, paket ve hediye durumları her gün kendiliğinden kontrol edilir. Herhangi bir müşteriye yazmak için müşteri kartındaki “Mesaj gönder” düğmesini kullanın.</small></div></div>`;
+  groups.forEach(([k, title, e]) => {
+    const list = rows[k]; if (!list) return;
+    const waiting = list.filter(x => !mvWasSent(x.c.id, x.t.key)).length;
+    h += `<div class="mv-card"><div class="mv-card-h"><span class="mv-cic c-${k === 'cel' ? 'cel' : k}"><span class="mv-emo">${e}</span></span><div><b>${title}</b><small>${waiting ? waiting + ' kişi bekliyor' : 'Hepsi gönderildi'}</small></div></div>` +
+      list.map(({ c, t }) => {
+        const wa = crmWA(c.phone, t.text), sent = mvWasSent(c.id, t.key);
+        return `<div class="mv-sug${sent ? ' sent' : ''}"><button class="mv-sug-who" data-act="open" data-id="${c.id}"><span class="mv-ava xs">${esc(initials(c.name))}</span><span><b>${esc(c.name)}</b><small>${esc(t.title)}</small></span></button>` +
+          `<button class="mv-sug-more" data-act="mv-wa" data-id="${c.id}" aria-label="Diğer mesajlar">${icon('more')}</button>` +
+          `<a class="mv-send" href="${esc(wa)}" target="_blank" rel="noopener" data-act="mv-sent" data-full="${esc(mvSentKey(c.id, t.key))}">${sent ? icon('check') + 'Gönderildi' : icon('wa') + 'Gönder'}</a></div>`;
+      }).join('') + `</div>`;
+  });
+  return h;
+}
+
+/* same "due today" list for the home screen and the kasa shortcut */
+function mvDueToday() {
+  const keys = ['birth', 'wed', 'appt', 'expiring', 'renew', 'gift', 'thanks', 'miss'], out = [];
+  db.customers.filter(c => crmPhone(c.phone)).forEach(c => mvTemplates(c).forEach(t => {
+    if (!keys.includes(t.key)) return;
+    out.push({ cid: c.id, name: c.name, phone: c.phone, text: t.text, key: mvSentKey(c.id, t.key), why: t.title, done: mvWasSent(c.id, t.key) });
+  }));
+  return out;
+}
 
 /* ================= start ================= */
 (function splash() {
