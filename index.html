@@ -10,6 +10,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Maviay">
 <title>Maviay Kuaför | Salon Yönetimi 2.0</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
 
 
 
@@ -740,6 +744,7 @@ body.pos-on .gsearch{display:none}
   .tile.just,.sp-logo,.sp-sig{animation:none}
   .tile{transition:none}
 }
+.ti-q{gap:4px;margin:0 6px}.ti-q .num{min-width:22px;text-align:center}.s-qty{position:absolute;top:8px;right:34px;font-weight:700;font-size:13px}
 </style>
 <style>
 
@@ -3808,9 +3813,10 @@ function posTotals() {
   let amt = 0, pts = 0;
   const missing = [];
   ui.pos.items.forEach(it => {
-    pts += it.pts || 0;
+    const q = it.qty || 1;
+    pts += (it.pts || 0) * q;
     if (it.pkg) return;
-    if (it.price > 0) amt += it.price; else missing.push(it.name);
+    if (it.price > 0) amt += it.price * q; else missing.push(it.name);
   });
   return { amt, pts, missing };
 }
@@ -3859,9 +3865,9 @@ function posCustHTML() {
     `<button class="btn primary pc-new" data-act="pos-newcust">${icon('plus')}Yeni müşteri</button></div><div id="posRes">${posResHTML()}</div>`;
 }
 function svcTile(name) {
-  const key = 's:' + norm(name), on = ui.pos.items.some(i => i.key === key), pr = prOf(name), pt = spOf(name);
+  const key = 's:' + norm(name), cur = ui.pos.items.find(i => i.key === key), on = !!cur, q = cur ? (cur.qty || 1) : 0, pr = prOf(name), pt = spOf(name);
   return `<button class="svc${on ? ' on' : ''}" data-act="pos-svc" data-k="${esc(name)}" aria-pressed="${on}"><span class="s-name">${esc(name)}</span>` +
-    `<span class="s-meta"><b class="num">${pr ? fmtTL(pr) : 'Fiyat yok'}</b>${pt ? `<em class="num">+${pt}</em>` : ''}</span>${on ? `<span class="s-check">${icon('check')}</span>` : ''}</button>`;
+    `<span class="s-meta"><b class="num">${pr ? fmtTL(pr) : 'Fiyat yok'}</b>${pt ? `<em class="num">+${pt}</em>` : ''}</span>${q > 1 ? `<span class="s-qty num">×${q}</span>` : ''}${on ? `<span class="s-check">${icon('check')}</span>` : ''}</button>`;
 }
 function posTilesHTML() {
   const c = posCust(), pk = c && active(c);
@@ -3885,7 +3891,8 @@ function posTicketHTML() {
   const d = new Date();
   const items = p.items.length
     ? p.items.map(it => `<div class="ti"><span class="ti-n">${esc(it.name)}${it.pkg ? '<span class="pkb">Paketten</span>' : ''}</span>` +
-      `<span class="num ti-p">${it.pkg ? '0 ₺' : it.price ? fmtTL(it.price) : '<span class="muted">fiyat yok</span>'}</span>` +
+      `<span class="num ti-p">${it.pkg ? '0 ₺' : it.price ? fmtTL(it.price * (it.qty || 1)) : '<span class="muted">fiyat yok</span>'}</span>` +
+      (it.pkg ? '' : `<div class="stepper ti-q"><button type="button" class="step" data-act="pos-qdec" data-k="${esc(it.key)}" aria-label="Azalt">−</button><span class="num">${it.qty || 1}</span><button type="button" class="step" data-act="pos-qinc" data-k="${esc(it.key)}" aria-label="Artır">+</button></div>`) +
       `<button class="icon-btn sm" data-act="pos-rm" data-k="${esc(it.key)}" aria-label="${esc(it.name)} çıkar">×</button></div>`).join('')
     : `<p class="muted t-empty">İşlem düğmelerine dokunun.</p>`;
   const warn = t.missing.length && !p.amountTouched ? `<p class="t-warn">${t.missing.map(esc).join(', ')} için fiyat yok, tutarı elle yazın.</p>` : '';
@@ -3960,7 +3967,7 @@ function posSave() {
     const pk = findPk(c, i.pid), it = pk && pk.items.find(x => x.id === i.pkgItem);
     if (it && it.uses.length < it.qty) { const u = { id: uid(), at: new Date().toISOString() }; it.uses.push(u); uses.push({ pid: i.pid, itemId: it.id, u }); }
   });
-  const e = newEntry({ type: 'in', cid: c ? c.id : null, cname: c ? c.name : '', items: p.items.map(i => i.name), pkg: p.items.filter(i => i.pkg).map(i => i.name),
+  const e = newEntry({ type: 'in', cid: c ? c.id : null, cname: c ? c.name : '', items: p.items.flatMap(i => Array(i.pkg ? 1 : (i.qty || 1)).fill(i.name)), pkg: p.items.filter(i => i.pkg).map(i => i.name),
     amount: amt, points: pts, pay: p.pay, employeeId: p.employeeId || '', date: today(), note: p.note.trim() });
   learnServices(p.items.filter(i => !i.pkg).map(i => ({ name: i.name })));
   save();
@@ -4779,7 +4786,7 @@ document.addEventListener('click', e => {
     case 'pos-unpick': ui.pos.cid = null; ui.pos.newName = ''; ui.pos.items = ui.pos.items.filter(i => !i.pkg); ui.pos.pointsTouched = false; posRefresh(); setTimeout(() => { const q = $('#posQ'); if (q) q.focus(); }, 30); break;
     case 'pos-svc': {
       const n = b.dataset.k, key = 's:' + norm(n), i = ui.pos.items.findIndex(x => x.key === key);
-      if (i >= 0) ui.pos.items.splice(i, 1); else ui.pos.items.push({ key, name: n, price: prOf(n), pts: spOf(n), pkg: false });
+      if (i >= 0) ui.pos.items[i].qty = Math.min(50, (ui.pos.items[i].qty || 1) + 1); else ui.pos.items.push({ key, name: n, price: prOf(n), pts: spOf(n), pkg: false, qty: 1 });
       posRefresh(['tiles', 'ticket']); break;
     }
     case 'pos-pk': {
@@ -4789,6 +4796,12 @@ document.addEventListener('click', e => {
       posRefresh(['tiles', 'ticket']); break;
     }
     case 'pos-rm': { ui.pos.items = ui.pos.items.filter(x => x.key !== b.dataset.k); posRefresh(['tiles', 'ticket']); break; }
+    case 'pos-qinc': case 'pos-qdec': {
+      const it = ui.pos.items.find(x => x.key === b.dataset.k); if (!it || it.pkg) break;
+      const q = (it.qty || 1) + (act === 'pos-qinc' ? 1 : -1);
+      if (q <= 0) ui.pos.items = ui.pos.items.filter(x => x !== it); else it.qty = Math.min(50, q);
+      posRefresh(['tiles', 'ticket']); break;
+    }
     case 'pos-other': openForm({ type: 'other' }, { name: '', price: '', pts: '' }); setTimeout(() => { const i = $('#o-name'); if (i) i.focus(); }, 60); break;
     case 'other-add': {
       const n = String(d.name || '').trim(); if (!n) { formErr('İşlemin adını yazın.'); break; }
@@ -6205,5 +6218,6 @@ setInterval(() => {
 })();
 
 }</script>
+<script>if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}</script>
 </body>
 </html>
